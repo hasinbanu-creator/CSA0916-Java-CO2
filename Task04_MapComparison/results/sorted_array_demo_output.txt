@@ -1,0 +1,19 @@
+================================================================================
+  TASK 04: ALTERNATIVE CONCEPT - SORTED ARRAY & Arrays.binarySearch()
+================================================================================
+
+Sorted Array Inventory:
+   MED-0012:Paracetamol(350)
+   MED-0099:Aspirin(120)
+   MED-0105:Cetirizine(95)
+   MED-0230:Ibuprofen(210)
+   MED-0540:Amoxicillin(80)
+
+Searching for code: MED-0230
+   Found at index 3: MED-0230:Ibuprofen(210)
+
+Complexity Profile:
+   - Lookup: O(log N) comparisons via binary search.
+   - Insertion: O(N) due to finding insertion index and shifting elements right.
+   - Sorted Code Report: O(N) contiguous iteration, zero sorting needed!
+   - Space: Ultra-compact (only 1 reference per element in array), 0 node wrapper objects.

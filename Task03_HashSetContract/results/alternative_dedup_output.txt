@@ -1,0 +1,18 @@
+================================================================================
+  TASK 03: ALTERNATIVE DEDUPLICATION ARCHITECTURES
+================================================================================
+
+1. Alternative 1: TreeSet<Student> with Comparator.comparing(Student::getRegNo)
+   - Does NOT rely on hashCode() or equals(); relies strictly on Comparator returning 0.
+   Unique count: 3
+   Natural sorted order maintained: [192311001 Arun, 192311002 Divya, 192311003 Karthik]
+   Time Complexity per scan: O(log N) (Red-Black self-balancing tree)
+
+2. Alternative 2: Map<String, Student> keyed by String regNo
+   - Uses String's built-in, highly optimized hashCode() and equals().
+   - Automatically overwrites/preserves existing entry on duplicate key.
+   Unique count: 3
+   Values: [192311001 Arun, 192311002 Divya, 192311003 Karthik]
+   Time Complexity per scan: O(1) average
+
+Deduplication alternative demonstration completed.

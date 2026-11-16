@@ -1,0 +1,40 @@
+================================================================================
+  TASK 03: THREE DELIBERATELY DESIGNED TEST CASES
+================================================================================
+
+--------------------------------------------------------------------------------
+TEST CASE 1: Identical Object Reference Re-inserted (Broken Student)
+Prediction: Size = 1
+Reason: When the exact same reference (s1) is added again, HashSet's internal
+        HashMap checks reference equality (p.hash == hash && ((k = p.key) == key)).
+        Because (s1 == s1) evaluates to true, the duplicate is rejected even
+        without overriding hashCode(), creating a false illusion of correctness!
+Actual Size: 1
+Match Prediction? YES
+
+--------------------------------------------------------------------------------
+TEST CASE 2: Two Distinct Objects with Identical regNo (Broken Student)
+Prediction: Size = 2
+Reason: s2a and s2b are distinct heap allocations. Default Object.hashCode() uses
+        system identity hash codes (typically memory address derived).
+        s2a and s2b almost certainly land in different hash buckets.
+        HashSet never invokes equals() because bucket bins do not collide!
+Actual Size: 2
+Contents: [192311005 Kavya, 192311005 Kavya]
+Match Prediction? YES (Duplicate entry exposed!)
+
+--------------------------------------------------------------------------------
+TEST CASE 3: Mutating Field Used in hashCode() After Insertion
+Prediction: After mutation, contains() returns FALSE for the same object, and
+            re-adding the same object results in Size = 2!
+Reason: When s3 is added with regNo '192311010', it is placed into bucket B1 based on
+        hashCode('192311010'). When regNo is changed to '192311999', its hashCode
+        changes. contains() calculates bucket B2 based on the new hash, finds B2 empty,
+        and declares the object absent. Adding it again stores it in B2, resulting in
+        a duplicate corrupted set containing the same object twice!
+Initial Size: 1 | Contains s3 ('192311010')? true
+After mutating regNo to '192311999':
+   set.contains(s3): false (Phantom memory leak / unfindable!)
+After re-adding s3 to set: Actual Size = 2
+Match Prediction? YES (Key mutation hazard confirmed!)
+--------------------------------------------------------------------------------

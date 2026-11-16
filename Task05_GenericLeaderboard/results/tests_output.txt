@@ -1,0 +1,43 @@
+================================================================================
+  TASK 05: LEADERBOARD ADVANCED VERIFICATION & EDGE CASE TESTS
+================================================================================
+
+--------------------------------------------------------------------------------
+TEST 1: Multiple Ties at Every Level (Points, Goal Difference, Names)
+Ranked Teams:
+   1. Falcons(10,8)
+   2. Hawks(10,5)
+   3. Tigers(10,5)
+   4. Cheetahs(7,2)
+   5. Lions(7,2)
+   6. Bears(7,-1)
+Verification:
+   - Falcons(10,8) first (highest GD among 10-pointers)
+   - Hawks(10,5) beats Tigers(10,5) alphabetically ('H' < 'T')
+   - Cheetahs(7,2) beats Lions(7,2) alphabetically ('C' < 'L')
+
+--------------------------------------------------------------------------------
+TEST 2: Demonstrating Faulty Comparators and Their Failure Modes
+   [Fault A - Integer Overflow]:
+   Comparing 2,000,000,000 and -2,000,000,000 via subtraction: 294967296
+   Expected: Negative (highPoints ranks first). Actual: Positive due to overflow, inverting rankings!
+   [Fault B - Incomplete Comparator]:
+   compare(Bisons, Panthers) = 0
+   Both teams compare as 0 (treated as equal), violating strict total ordering!
+
+--------------------------------------------------------------------------------
+TEST 3: Transitivity and Consistency Verification
+   A ranks above B: true
+   B ranks above C: true
+   A ranks above C: true
+   Transitivity holds? true
+   Antisymmetry holds? true
+
+--------------------------------------------------------------------------------
+TEST 4: Generic Reusability with Player Entity
+Ranked Players:
+   1. Deepak[Pts:92,Pen:1]
+   2. Ananya[Pts:92,Pen:4]
+   3. Varun[Pts:85,Pen:1]
+   4. Siddharth[Pts:85,Pen:2]
+Leaderboard generic reusability verified successfully.

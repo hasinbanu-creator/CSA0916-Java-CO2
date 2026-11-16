@@ -1,0 +1,63 @@
+================================================================================
+  TASK 06: TRIAGE VERIFICATION, HEAP INTERNALS & FAIRNESS DEMO
+================================================================================
+
+--------------------------------------------------------------------------------
+1. HAND-WORKED 8-PATIENT CORRECTNESS TEST
+Admitted Patients in Arrival Order:
+   [Arr 0] Rajesh (S3)
+   [Arr 1] Anita (S1) - Critical cardiac
+   [Arr 2] Vikram (S4) - Minor sprain
+   [Arr 3] Sneha (S2) - Deep laceration
+   [Arr 4] Deepak (S1) - Stroke symptoms
+   [Arr 5] Manoj (S3) - Fracture
+   [Arr 6] Priya (S5) - Mild fever
+   [Arr 7] Arjun (S2) - High fever / asthma
+
+Hand-Worked Predicted Serving Order:
+   1. Anita(S1)   (S1, Arr 1)
+   2. Deepak(S1)  (S1, Arr 4)
+   3. Sneha(S2)   (S2, Arr 3)
+   4. Arjun(S2)   (S2, Arr 7)
+   5. Rajesh(S3)  (S3, Arr 0)
+   6. Manoj(S3)   (S3, Arr 5)
+   7. Vikram(S4)  (S4, Arr 2)
+   8. Priya(S5)   (S5, Arr 6)
+
+Program Actual Serving Order: Anita(S1) Deepak(S1) Sneha(S2) Arjun(S2) Rajesh(S3) Manoj(S3) Vikram(S4) Priya(S5)
+Verification: Perfect match with hand derivation!
+
+--------------------------------------------------------------------------------
+2. HEAP ARRAY ORDER VS. POLLED TREATMENT ORDER
+Direct print: System.out.println(rawQueue):
+   [Anita(S1), Deepak(S1), Vikram(S4), Rajesh(S3), Sneha(S2)]
+Explanation: PriorityQueue uses an internal array backing a binary min-heap.
+   In a binary min-heap, array elements satisfy parent-child invariants:
+   heap[i] <= heap[2i + 1] and heap[i] <= heap[2i + 2].
+   It is a PARTIAL ORDER, NOT a total sorted array! Only the root (index 0) is
+   guaranteed to be the minimum. To retrieve items in sorted order, elements
+   must be extracted via poll(), which sifts down remaining nodes in O(log N).
+
+--------------------------------------------------------------------------------
+3. STARVATION PROBLEM & PROPOSED AGING FAIRNESS MECHANISM
+Problem: A patient with Severity 5 (e.g., minor rash) can wait indefinitely
+         (starvation) if critical patients (S1, S2, S3) continually arrive.
+Aging Rule: Every 30 minutes of waiting promotes a patient's effective severity by 1,
+            capping at Severity 1.
+At arrival (T = 0 min)   : Asha_Starving(Base:S5 -> Eff:S5)
+After 60 mins (2 intervals): Asha_Starving(Base:S5 -> Eff:S3)
+After 120 mins (4 intervals): Asha_Starving(Base:S5 -> Eff:S1)
+Outcome: Patient escalated from S5 to S1, guaranteeing treatment window!
+
+--------------------------------------------------------------------------------
+4. CITY HOSPITAL SCALE EVALUATION (5,000 PATIENTS / DAY)
+Assessment: Can this PriorityQueue design support 5,000 patients daily?
+Analysis:
+   1. Queue Depth: Even with a backlog of 5,000 patients simultaneously waiting,
+      binary heap height is ceil(log2(5000)) = 13 levels.
+   2. Operations per day: 5,000 admits + 5,000 polls = 10,000 heap operations.
+   3. CPU Time: At ~100 nanoseconds per heap operation, 10,000 operations take ~1 millisecond
+      of total CPU time for the entire 24-hour day!
+   4. Memory: 5,000 Patient objects consume ~160 KB of RAM, trivial for any JVM.
+Conclusion: A single-machine Java PriorityQueue easily handles 5,000 patients/day
+            with sub-microsecond latency and negligible memory overhead.

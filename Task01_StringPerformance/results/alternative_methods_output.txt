@@ -1,0 +1,27 @@
+================================================================================
+  TASK 01: ALTERNATIVE CONCEPTS (String.join, StringJoiner, String.format)
+================================================================================
+
+1. Output from String.join():
+PNR:2847192048_Field1
+Train:12626/KeralaExpress_Field2
+From:NDLS_Field3
+To:TVC_Field4
+DOJ:2026-11-20_Field5
+
+2. Output from StringJoiner (with prefix and suffix):
+--- RAILWAY E-TICKET ---
+PNR:2847192048_Field1
+Train:12626/KeralaExpress_Field2
+From:NDLS_Field3
+To:TVC_Field4
+DOJ:2026-11-20_Field5
+------------------------
+3. Output from String.format():
+PNR:2847192048_Field1
+Train:12626/KeralaExpress_Field2
+From:NDLS_Field3
+To:TVC_Field4
+DOJ:2026-11-20_Field5
+
+Execution completed successfully.

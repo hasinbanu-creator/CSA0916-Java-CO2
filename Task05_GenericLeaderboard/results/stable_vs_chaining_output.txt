@@ -1,0 +1,22 @@
+================================================================================
+  TASK 05: COMPARATOR CHAINING VS. THREE STABLE SORT PASSES
+================================================================================
+
+>>> Testing with N = 1000 teams:
+   Single Chained Comparator (1 sort pass)  :     1.20 ms
+   Three Stable Sorts (3 distinct sort passes):     1.35 ms
+   Chained approach speedup: 1.12x faster!
+
+>>> Testing with N = 10000 teams:
+   Single Chained Comparator (1 sort pass)  :     3.43 ms
+   Three Stable Sorts (3 distinct sort passes):     6.89 ms
+   Chained approach speedup: 2.01x faster!
+
+>>> Testing with N = 50000 teams:
+   Single Chained Comparator (1 sort pass)  :    17.77 ms
+   Three Stable Sorts (3 distinct sort passes):    30.83 ms
+   Chained approach speedup: 1.73x faster!
+
+Complexity Analysis:
+   - Chained Comparator : 1 x O(N log N) TimSort comparisons.
+   - Three Stable Sorts : 3 x O(N log N) TimSort passes; performs 3x the array copies and runs.

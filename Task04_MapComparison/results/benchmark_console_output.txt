@@ -1,0 +1,33 @@
+================================================================================
+  TASK 04: HOSPITAL PHARMACY INVENTORY BENCHMARK
+  Comparing HashMap, TreeMap, and LinkedHashMap
+================================================================================
+
+>>> Testing Inventory Size: N = 1,000 Medicines
+   Insertion Time (N items)     | HM:     0.12 ms | TM:     0.92 ms | LHM:     0.21 ms
+   100,000 Lookups (get)        | HM:     3.39 ms | TM:    16.57 ms | LHM:     2.88 ms
+   Sorted Code Report Time      | HM:     0.87 ms | TM:     0.13 ms | LHM:     0.58 ms
+   Insertion Order Report Time  | HM:      N/A    | TM:      N/A    | LHM:     0.19 ms
+
+>>> Testing Inventory Size: N = 10,000 Medicines
+   Insertion Time (N items)     | HM:     1.05 ms | TM:     4.42 ms | LHM:     0.66 ms
+   100,000 Lookups (get)        | HM:     3.06 ms | TM:    21.71 ms | LHM:     2.98 ms
+   Sorted Code Report Time      | HM:     3.80 ms | TM:     0.91 ms | LHM:     3.59 ms
+   Insertion Order Report Time  | HM:      N/A    | TM:      N/A    | LHM:     0.31 ms
+
+>>> Testing Inventory Size: N = 100,000 Medicines
+   Insertion Time (N items)     | HM:    11.00 ms | TM:    46.65 ms | LHM:     9.06 ms
+   100,000 Lookups (get)        | HM:     3.27 ms | TM:    41.69 ms | LHM:     3.15 ms
+   Sorted Code Report Time      | HM:    24.94 ms | TM:     3.96 ms | LHM:    30.11 ms
+   Insertion Order Report Time  | HM:      N/A    | TM:      N/A    | LHM:     1.04 ms
+
+--- VERIFYING OUTPUT ORDERING ACROSS MAP IMPLEMENTATIONS ---
+Original Insertion Sequence : [MED-9002, MED-1005, MED-4500, MED-2200]
+HashMap Key Iteration       : [MED-2200, MED-1005, MED-4500, MED-9002] (Arbitrary bucket hash order)
+TreeMap Key Iteration       : [MED-1005, MED-2200, MED-4500, MED-9002] (Naturally sorted code order)
+LinkedHashMap Key Iteration : [MED-9002, MED-1005, MED-4500, MED-2200] (Preserves exact insertion order)
+------------------------------------------------------------
+
+Map benchmark data exported to: /Users/hasinnn/Documents/Java Assignment 2/CSA0916-192321030-Assignment2/Task04_MapComparison/results/Q4_Map_Benchmark.csv
+Map benchmark data exported to: /Users/hasinnn/Documents/Java Assignment 2/CSA0916-192321030-Assignment2/Benchmark_Results/Q4_Map_Benchmark.csv
+Pharmacy inventory benchmark completed.

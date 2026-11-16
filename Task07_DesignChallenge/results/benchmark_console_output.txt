@@ -1,0 +1,23 @@
+================================================================================
+  TASK 07: DAY-4 DESIGN CHALLENGE - VALIDATION BENCHMARK
+  Original (Binary Heap PriorityQueue) vs. Redesigned (Multi-Level FIFO Buckets)
+================================================================================
+
+>>> WORKLOAD: N = 1,000 Patients
+   Admit 1000 Patients          | Orig:    0.372 ms | Redesign:    0.173 ms |   2.15x faster ( 53.4% improvement)
+   Poll 1000 Patients           | Orig:    0.672 ms | Redesign:    0.358 ms |   1.88x faster ( 46.7% improvement)
+   Aging Update (1000 pts)      | Orig:    0.157 ms | Redesign:    0.105 ms |   1.50x faster ( 33.5% improvement)
+
+>>> WORKLOAD: N = 10,000 Patients
+   Admit 10000 Patients         | Orig:    1.011 ms | Redesign:    0.827 ms |   1.22x faster ( 18.2% improvement)
+   Poll 10000 Patients          | Orig:    4.964 ms | Redesign:    2.196 ms |   2.26x faster ( 55.8% improvement)
+   Aging Update (10000 pts)     | Orig:    1.546 ms | Redesign:    0.699 ms |   2.21x faster ( 54.8% improvement)
+
+>>> WORKLOAD: N = 100,000 Patients
+   Admit 100000 Patients        | Orig:    5.730 ms | Redesign:    2.973 ms |   1.93x faster ( 48.1% improvement)
+   Poll 100000 Patients         | Orig:   45.042 ms | Redesign:   24.579 ms |   1.83x faster ( 45.4% improvement)
+   Aging Update (100000 pts)    | Orig:    3.043 ms | Redesign:    6.628 ms |   0.46x faster (-117.8% improvement)
+
+Redesign comparison CSV exported to: /Users/hasinnn/Documents/Java Assignment 2/CSA0916-192321030-Assignment2/Task07_DesignChallenge/results/Q7_Redesign_Benchmark.csv
+Redesign comparison CSV exported to: /Users/hasinnn/Documents/Java Assignment 2/CSA0916-192321030-Assignment2/Benchmark_Results/Q7_Redesign_Benchmark.csv
+Design Challenge benchmark completed successfully.

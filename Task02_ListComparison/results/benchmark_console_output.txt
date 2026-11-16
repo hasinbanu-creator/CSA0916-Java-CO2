@@ -1,0 +1,35 @@
+================================================================================
+  TASK 02: MUSIC PLAYLIST EDITOR BENCHMARK
+  Comparing ArrayList, LinkedList, ArrayDeque, and Plain Array
+================================================================================
+
+>>> Testing Playlist Size: N = 1,000
+   Add at End (1000 items)      | AL:     111.10 us | LL:     152.39 us | AD:  105.63 us | Array:      53.14 us
+   Insert Front (1000 ops)      | AL:     265.57 us | LL:      45.64 us | AD:   54.93 us | Array:     797.63 us
+   Insert Middle (1000 ops)     | AL:     131.40 us | LL:    2290.53 us | AD:        N/A | Array:     469.92 us
+   Remove Front (1000 ops)      | AL:     156.33 us | LL:      65.22 us | AD:   65.86 us | Array:     345.93 us
+   Remove Middle (1000 ops)     | AL:     116.30 us | LL:     728.54 us | AD:        N/A | Array:     236.28 us
+   Get k-th (10000 lookups)     | AL:     279.43 us | LL:    5808.70 us | AD:        N/A | Array:     116.08 us
+   Full Iteration (1000 items)  | AL:      39.47 us | LL:      83.67 us | AD:   86.29 us | Array:      11.03 us
+
+>>> Testing Playlist Size: N = 10,000
+   Add at End (10000 items)     | AL:     603.92 us | LL:     674.93 us | AD:  719.39 us | Array:     444.50 us
+   Insert Front (1000 ops)      | AL:     944.84 us | LL:      28.93 us | AD:   49.42 us | Array:    4857.61 us
+   Insert Middle (1000 ops)     | AL:     511.98 us | LL:   14720.92 us | AD:        N/A | Array:    2500.42 us
+   Remove Front (1000 ops)      | AL:     862.96 us | LL:      41.23 us | AD:   42.23 us | Array:    4412.21 us
+   Remove Middle (1000 ops)     | AL:     477.75 us | LL:   12997.59 us | AD:        N/A | Array:    2271.21 us
+   Get k-th (10000 lookups)     | AL:     192.72 us | LL:   65668.16 us | AD:        N/A | Array:     148.62 us
+   Full Iteration (10000 items) | AL:     399.86 us | LL:     441.49 us | AD:  439.29 us | Array:     111.53 us
+
+>>> Testing Playlist Size: N = 100,000
+   Add at End (100000 items)    | AL:    1411.02 us | LL:    1719.83 us | AD: 1470.22 us | Array:    1566.07 us
+   Insert Front (500 ops)       | AL:    6226.03 us | LL:      12.02 us | AD:   49.34 us | Array:    9364.60 us
+   Insert Middle (500 ops)      | AL:    2992.42 us | LL:   67000.29 us | AD:        N/A | Array:    4534.58 us
+   Remove Front (500 ops)       | AL:    6200.39 us | LL:      18.40 us | AD:   16.83 us | Array:    9447.70 us
+   Remove Middle (500 ops)      | AL:    3027.65 us | LL:   65193.57 us | AD:        N/A | Array:    4718.04 us
+   Get k-th (10000 lookups)     | AL:      84.98 us | LL:  661202.17 us | AD:        N/A | Array:      45.65 us
+   Full Iteration (100000 items) | AL:     934.37 us | LL:    1007.23 us | AD: 1290.25 us | Array:     402.36 us
+
+Benchmark data exported to: /Users/hasinnn/Documents/Java Assignment 2/CSA0916-192321030-Assignment2/Task02_ListComparison/results/Q2_Collections_Benchmark.csv
+Benchmark data exported to: /Users/hasinnn/Documents/Java Assignment 2/CSA0916-192321030-Assignment2/Benchmark_Results/Q2_Collections_Benchmark.csv
+Benchmark completed successfully.
